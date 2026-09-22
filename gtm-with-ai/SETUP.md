@@ -186,6 +186,7 @@ yourself.
 Do the first one on a container that does not matter.
 
 **One thing about the browser half:** `chrome-devtools-mcp` launches its own Chrome
-profile, which is not logged in to anything. Pages behind a login — client staging
-sites, member areas — will not load unless you connect it to your existing Chrome. Check
+profile, which is not logged in to anything. Pages behind a login will not load unless
+you connect it to your existing Chrome. That means client staging sites and member
+areas. Check
 that project's README for the flag. Public pages work out of the box.

@@ -66,7 +66,7 @@ later.
 **Step 5, no publishing.** Non-negotiable. See the QA prompt.
 
 **Why the container and tag type are placeholders.** The server needs to know which
-container it is working in, and "make a tag" is not a complete instruction — GA4 event,
+container it is working in, and "make a tag" is not a complete instruction. GA4 event,
 conversion linker and custom HTML are different things pointed at different
 destinations. Leave these blank and the model either asks you (fine) or picks for you
 (not fine).
