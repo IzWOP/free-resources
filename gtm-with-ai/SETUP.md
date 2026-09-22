@@ -124,8 +124,11 @@ What happens, in order:
 5. **The browser lands on an error page** at `http://localhost/?code=...` saying the
    site can't be reached. **This is expected.** Nothing is listening on localhost. Do
    not close the tab.
-6. **Copy the `code` value out of the address bar** — everything after `code=` and
-   before the next `&` — and paste it back into the terminal.
+6. **Copy the `code` value out of the address bar**: everything after `code=` and
+   before the next `&`. Paste it back into the terminal.
+   **If what you copied contains `%2F`, replace it with `/` before pasting.** Chrome
+   copies the URL-encoded form, and a code beginning `4%2F0A...` fails the exchange
+   with `invalid_grant`. It should begin `4/0A...`.
 7. The token is written to `GTM_TOKEN_FILE`.
 
 Restart your MCP client so it picks up the servers.
