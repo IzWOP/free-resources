@@ -1,0 +1,8 @@
+# Never commit these. credentials.json is your OAuth client; token.json is a live
+# access token to every GTM container the authorising account can reach. Anyone
+# holding token.json can publish to those containers.
+credentials.json
+token.json
+*.credentials.json
+*token.json
+client_secret*.json

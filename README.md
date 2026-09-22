@@ -13,6 +13,7 @@ I build AI systems for businesses and post the builds as I do them:
 | Folder | What it is | Who it's for |
 |---|---|---|
 | [`three-pass-review/`](./three-pass-review) | Build, cold review, devil's advocate as three separate agents, so nothing reviews its own work | Anyone building with AI who keeps shipping things their AI said were fine |
+| [`gtm-with-ai/`](./gtm-with-ai) | Two MCP servers that let AI build Google Tag Manager tags for you to review and publish, plus the cloud setup that makes it work on a client's account | Anyone who writes GTM tags by hand |
 
 ---
 
@@ -35,6 +36,8 @@ when they land.
 
 Take it. Change it. Ship it in your own work. No attribution needed and no license
 gymnastics. If it helps, tell me what you built with it.
+
+That applies to what I wrote: the guides, the prompts, the rules. Some folders build on third-party tools, and those keep their own licenses and their own authors' names. Each folder credits what it uses.
 
 If something here is wrong or breaks for you, open an issue. Getting told I'm wrong is
 the entire point of the first folder.

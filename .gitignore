@@ -1,0 +1,10 @@
+# Credentials, at the repo root as well as in each folder. A reader who clones this
+# and drops a credential file at the root then runs `git add .` would otherwise
+# commit a live token that can publish to every GTM container it can reach.
+credentials.json
+token.json
+*.credentials.json
+*token.json
+client_secret*.json
+
+.DS_Store
