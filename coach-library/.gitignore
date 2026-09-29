@@ -1,0 +1,7 @@
+# What you download and add stays on your machine. Transcripts belong to the channel
+# and books belong to their authors, so none of it should ever be committed or shared.
+library/
+index/
+__pycache__/
+*.pyc
+.DS_Store
