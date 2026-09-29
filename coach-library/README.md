@@ -113,7 +113,8 @@ big library can take more than one sitting. See the limits below.
 
 - **Claude Code.** The tools are plain Python and work without it, but the "search
   before you answer" part is a Claude Code skill.
-- **Python 3.9 or newer.** Standard library only. `python3 --version` to check.
+- **Python 3.9 or newer.** Standard library only. `python3 --version` to check. On a
+  fresh Mac, if a popup asks to install the command line developer tools, say yes.
 - **yt-dlp**, which fetches the captions. `brew install yt-dlp` on a Mac, or
   `python3 -m pip install --user yt-dlp`.
 - **For PDF books only:** `pdftotext` (`brew install poppler`) or `pypdf`
@@ -146,6 +147,9 @@ I've run it on a Mac. It should work on Linux and Windows too, but I haven't tes
   minutes. The fetcher backs off, then stops and tells you. Everything it got is saved.
   Run the same command later and it carries on where it stopped. `--pause 15` spaces
   the requests out more.
+- **yt-dlp gets old.** YouTube changes things every few months and old versions stop
+  working. If every video gets skipped, update it: `brew upgrade yt-dlp` or
+  `python3 -m pip install --user -U yt-dlp`.
 - **English by default.** For another language use `--lang`, for example `--lang es`.
 
 ---

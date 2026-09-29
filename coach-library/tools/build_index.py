@@ -177,7 +177,7 @@ def main():
                 "t": title,
                 "o": off,
                 "loc": loc,
-                "x": piece,
+                "x": re.sub(r"\s*## Page \d+\s*", " ", piece).strip(),
                 "tf": tf,
                 "len": len(toks),
             })

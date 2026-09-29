@@ -26,7 +26,7 @@ from urllib.parse import unquote
 SKILL_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DEST = os.path.join(SKILL_ROOT, "library", "books")
 
-CHAPTER_LINE = re.compile(r"^\s*((chapter|part|book|section)\s+([0-9]+|[ivxlcdm]+)\b.*)$", re.I)
+CHAPTER_LINE = re.compile(r"^\s*((chapter|part|book|section)\s+([0-9]+|[ivxlcdm]+)\b[.:]?(\s+[^.!?]{0,40})?)\s*$", re.I)
 
 
 def slug(t):
@@ -152,7 +152,10 @@ def from_epub(path):
         if any(u.lower().endswith((".html", ".xhtml", ".htm")) for u in locked):
             sys.exit("This EPUB is DRM-protected, so its text cannot be read. "
                      "Use a DRM-free copy of a book you own.")
-    container = ET.fromstring(z.read("META-INF/container.xml"))
+    try:
+        container = ET.fromstring(z.read("META-INF/container.xml"))
+    except KeyError:
+        sys.exit("This EPUB is missing its table of contents file (META-INF/container.xml).")
     opf_path = next(e.get("full-path") for e in container.iter() if _local(e.tag) == "rootfile")
     opf_dir = posixpath.dirname(opf_path)
     opf = ET.fromstring(z.read(opf_path))

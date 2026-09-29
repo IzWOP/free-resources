@@ -16,7 +16,11 @@ For each video it writes:
     library/transcripts/.timing/<same name>.json          word position -> second
 The timing file is what lets a search result link to the exact second.
 """
-import os, re, sys, json, html, time, shutil, argparse, subprocess, tempfile
+import os, re, sys, json, html, time, shutil, argparse, subprocess, tempfile, importlib.util
+
+# yt-dlp from Homebrew is on PATH. From "pip install --user" it often is not, so fall back
+# to running it as a Python module.
+YTDLP = ["yt-dlp"] if shutil.which("yt-dlp") else [sys.executable, "-m", "yt_dlp"]
 
 SKILL_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DEST = os.path.join(SKILL_ROOT, "library", "transcripts")
@@ -80,7 +84,7 @@ def pick_vtt(folder, lang):
 
 def _yt_subs(vid, folder, langs):
     r = subprocess.run(
-        ["yt-dlp", "--skip-download", "--write-subs", "--write-auto-subs",
+        YTDLP + ["--skip-download", "--write-subs", "--write-auto-subs",
          "--sub-langs", langs, "--sub-format", "vtt", "--sleep-requests", "1",
          "-o", os.path.join(folder, "%(id)s.%(ext)s"),
          f"https://www.youtube.com/watch?v={vid}"],
@@ -116,7 +120,7 @@ def fetch_captions(vid, folder, lang, pause):
 
 def list_videos(url):
     r = subprocess.run(
-        ["yt-dlp", "--flat-playlist", "--ignore-errors",
+        YTDLP + ["--flat-playlist", "--ignore-errors",
          "--print", "%(id)s\t%(duration)s\t%(title)s", url],
         capture_output=True, text=True)
     rows = []
@@ -152,7 +156,7 @@ def main():
                          "keeps rate-limiting you")
     a = ap.parse_args()
 
-    if not shutil.which("yt-dlp"):
+    if not shutil.which("yt-dlp") and importlib.util.find_spec("yt_dlp") is None:
         sys.exit("yt-dlp is not installed. Install it with one of:\n"
                  "  brew install yt-dlp\n"
                  "  python3 -m pip install --user yt-dlp\n"
