@@ -23,6 +23,29 @@ workspace.
 
 You look at it. You publish it.
 
+## Known limitation: click and form triggers come out with no condition
+
+**Read this before you track a click.** `gtm-mcp` (v1.0.0) saves trigger conditions into
+a field Google only honours on *custom event* triggers. On a click, link-click or
+form-submit trigger that field is ignored, so the trigger is created with **no
+condition at all**. It fires on every click on the page, or every form submit, not just
+the one you asked for. Nothing errors. The trigger just looks empty.
+
+I found this on a client's site: seven click and form triggers had run with no
+conditions for eight days, so every click on the page was reported as a click on the
+pricing button.
+
+The fix, until the server handles it:
+
+1. Let it build the trigger and the tag as normal.
+2. Open the trigger in GTM. Change it to **Some Clicks** (or Some Forms) and add the
+   condition by hand, for example *Click Element matches CSS selector* with the selector
+   it gave you. If Click Element is missing from the list, enable it under Variables,
+   Built-In Variables.
+3. Run the QA prompt and click something that is **not** the button. It must not fire.
+
+Prompt 1 now asks the model to hand you the exact condition to add.
+
 ## Why the second server matters
 
 A GTM connector on its own can write a tag, but it is guessing at what to point the tag
@@ -118,7 +141,9 @@ goes live.
 Before you publish:
 
 - Preview the container and click the actual thing. Does the trigger fire?
-- Does it fire *only* then? Not on page load, not on every click.
+- Does it fire *only* then? Not on page load, not on every click. Click something that
+  is not the button. If it fires, the trigger has no condition (see
+  [Known limitation](#known-limitation-click-and-form-triggers-come-out-with-no-condition)).
 - Is the selector stable, or a generated class name that dies next deploy?
 - Is anything personal being collected? Emails in a URL, names in a data layer.
 - Is this the right container? There is no undo on a published container, only a

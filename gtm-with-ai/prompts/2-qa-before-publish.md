@@ -9,7 +9,9 @@ yourself. The model can tell you what it built; only you can tell whether it is 
 Before I publish, walk me through what you created and answer these directly. One line
 each, no preamble.
 
-1. What exactly does this tag fire on? Describe the trigger conditions in plain English.
+1. What exactly does this tag fire on? Read the trigger back from the container and
+   describe the conditions that are actually saved, in plain English. If there are none,
+   say so first.
 2. What would ALSO make it fire that I might not expect? Page load, other buttons,
    anything matching the selector elsewhere on the site, navigation.
 3. Is the selector stable across a redeploy? Say yes or no, and why.
@@ -30,7 +32,8 @@ Do these yourself in GTM Preview. This is fifteen minutes and it is the differen
 between a tag you trust and a number you argue about next quarter.
 
 - [ ] **Preview the container and click the actual thing.** Does the trigger fire?
-- [ ] **Does it fire ONLY then?** Load the page and do nothing. Click other things.
+- [ ] **Does it fire ONLY then?** Load the page and do nothing. Click something that is
+      NOT the button; if it fires, the trigger has no condition. Click other things.
       Navigate. A trigger that also fires on page load will quietly inflate everything.
 - [ ] **Check a second page.** If the selector matches something unrelated elsewhere on
       the site, you will find out here rather than in a report.

@@ -36,10 +36,17 @@ Work in this order and do not skip ahead.
    rather than inventing your own. If I did not give you enough to pick the tag type or
    the destination, ask. Do not choose for me.
 
+   If the trigger is a click, link click or form trigger: gtm-mcp cannot save conditions
+   on those types, so it will be created with none and fire on everything. After
+   creating it, read the trigger back and tell me whether a condition actually saved. If
+   not, give me the exact condition to add by hand in GTM: the trigger type (Some
+   Clicks / Some Forms), the variable, the operator, and the value.
+
 5. Leave everything in a workspace. Do NOT publish. Do not create a container version.
 
-6. Report back: what you created, the exact selector, the trigger conditions, and what
-   I should click to test it.
+6. Report back: what you created, the exact selector, the trigger conditions AS SAVED in
+   the container (read them back, do not repeat what you intended), and what I should
+   click to test it.
 
 If anything is ambiguous, ask me instead of choosing for me.
 ```
@@ -62,6 +69,11 @@ double-count, and double-counted conversions are worse than none because you act
 **Step 4's naming convention.** Whoever opens this container next is a human, possibly
 you in eight months. Matching the existing names costs nothing now and saves an hour
 later.
+
+**The click and form trigger check in step 4.** `gtm-mcp` writes conditions into a field
+Google only honours on custom event triggers. On a click trigger they silently disappear
+and the trigger fires on every click. Reading the trigger back is the only way to catch
+it before Preview does. See the README's Known limitation section.
 
 **Step 5, no publishing.** Non-negotiable. See the QA prompt.
 
