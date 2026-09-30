@@ -14,6 +14,7 @@ I build AI systems for businesses and post the builds as I do them:
 |---|---|---|
 | [`three-pass-review/`](./three-pass-review) | Build, cold review, devil's advocate as three separate agents, so nothing reviews its own work | Anyone building with AI who keeps shipping things their AI said were fine |
 | [`gtm-with-ai/`](./gtm-with-ai) | Two MCP servers that let AI build Google Tag Manager tags for you to review and publish, plus the cloud setup that makes it work on a client's account | Anyone who writes GTM tags by hand |
+| [`coach-library/`](./coach-library) | Your Claude builds a searchable library of one expert's videos and the books you own, then has to search it before it answers and cite the video second or book page | Anyone who keeps asking AI what some coach or expert would say |
 
 ---
 
